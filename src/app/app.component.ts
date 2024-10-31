@@ -7,6 +7,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
   standalone: true,
   imports: [RouterOutlet, SignInComponent],
   template: `
+    <h1>{{ title }}</h1>
     <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.component.css']
