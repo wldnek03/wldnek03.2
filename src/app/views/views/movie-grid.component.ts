@@ -48,7 +48,7 @@ export class MovieGridComponent implements OnInit, OnDestroy {
       const numberOfPages = Math.ceil(totalMoviesNeeded / this.moviesPerPage);
       let allMovies: Movie[] = [];
 
-      // 예시로 액세스 토큰을 변수로 가정 (실제로는 로그인 후 받아와야 함)
+      // 액세스 토큰 (실제로는 로그인 후 받아와야 함)
       const accessToken = 'your-access-token-here'; // 실제로는 인증 서비스에서 받아온 토큰이어야 함
 
       for (let page = 1; page <= numberOfPages; page++) {
