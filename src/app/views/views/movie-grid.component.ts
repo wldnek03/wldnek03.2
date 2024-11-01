@@ -1,8 +1,8 @@
 import { Component, Input, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import axios from 'axios';
-import {Movie} from '../../../models/types';
-import {WishlistService} from '../../util/movie/wishlist';
+import { Movie } from '../../../models/types';
+import { WishlistService } from '../../util/movie/wishlist';
 
 @Component({
   selector: 'app-movie-grid',
@@ -41,17 +41,24 @@ export class MovieGridComponent implements OnInit, OnDestroy {
     }
   }
 
+  // 영화 데이터를 가져오는 함수
   async fetchMovies(): Promise<void> {
     try {
       const totalMoviesNeeded = 120;
-      const numberOfPages = Math.ceil(totalMoviesNeeded / 20);
+      const numberOfPages = Math.ceil(totalMoviesNeeded / this.moviesPerPage);
       let allMovies: Movie[] = [];
+
+      // 예시로 액세스 토큰을 변수로 가정 (실제로는 로그인 후 받아와야 함)
+      const accessToken = 'your-access-token-here'; // 실제로는 인증 서비스에서 받아온 토큰이어야 함
 
       for (let page = 1; page <= numberOfPages; page++) {
         const response = await axios.get(this.fetchUrl, {
           params: {
             page,
             per_page: this.moviesPerPage
+          },
+          headers: {
+            'Authorization': `Bearer ${accessToken}` // Authorization 헤더 추가
           }
         });
         allMovies = [...allMovies, ...response.data.results];
